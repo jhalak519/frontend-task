@@ -72,6 +72,9 @@ router.post(
 // @desc    Authenticate user & get token
 // @access  Public
 router.post('/login', async (req, res) => {
+    console.log("LOGIN ATTEMPT:");
+    console.log("Headers:", req.headers);
+    console.log("Body:", req.body);
     const { email, password } = req.body;
 
     try {

@@ -2,9 +2,15 @@
 
 @theme {
   --font-sans: 'Inter', "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+
+  --color-brand-primary: #A8DF8E;
+  --color-brand-bg: #F0FFDF;
+  --color-brand-soft: #FFD8DF;
+  --color-brand-accent: #FFAAB8;
 }
 
 body {
   font-family: var(--font-sans);
-  @apply bg-slate-50 text-slate-900;
+  background-color: var(--color-brand-bg);
+  @apply text-slate-900;
 }

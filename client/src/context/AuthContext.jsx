@@ -97,7 +97,7 @@ export const AuthProvider = ({ children }) => {
     const login = async (formData) => {
         try {
             const res = await api.post('/auth/login', formData);
-
+            localStorage.setItem('token', res.data.token);
             dispatch({
                 type: 'LOGIN_SUCCESS',
                 payload: res.data,

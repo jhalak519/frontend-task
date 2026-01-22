@@ -48,8 +48,8 @@ const Register = () => {
     };
 
     return (
-        <div className="flex bg-slate-50 min-h-screen items-center justify-center p-4">
-            <div className="w-full max-w-md space-y-8 bg-white p-8 rounded-2xl shadow-xl border border-slate-100">
+        <div className="flex bg-brand-bg min-h-screen items-center justify-center p-4">
+            <div className="w-full max-w-md space-y-8 bg-white p-8 rounded-2xl shadow-xl border border-brand-primary/10">
                 <div className="text-center">
                     <h2 className="mt-6 text-3xl font-bold tracking-tight text-slate-900">
                         Create Account
@@ -71,7 +71,7 @@ const Register = () => {
                                     name="name"
                                     type="text"
                                     required
-                                    className="appearance-none relative block w-full pl-10 px-3 py-3 border border-slate-300 placeholder-slate-500 text-slate-900 rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="appearance-none relative block w-full pl-10 px-3 py-3 border border-slate-300 placeholder-slate-500 text-slate-900 rounded-lg focus:outline-none focus:ring-brand-primary focus:border-brand-primary focus:z-10 sm:text-sm"
                                     placeholder="Full Name"
                                     value={name}
                                     onChange={onChange}
@@ -90,7 +90,7 @@ const Register = () => {
                                     type="email"
                                     autoComplete="email"
                                     required
-                                    className="appearance-none relative block w-full pl-10 px-3 py-3 border border-slate-300 placeholder-slate-500 text-slate-900 rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="appearance-none relative block w-full pl-10 px-3 py-3 border border-slate-300 placeholder-slate-500 text-slate-900 rounded-lg focus:outline-none focus:ring-brand-primary focus:border-brand-primary focus:z-10 sm:text-sm"
                                     placeholder="Email address"
                                     value={email}
                                     onChange={onChange}
@@ -108,7 +108,7 @@ const Register = () => {
                                     name="password"
                                     type="password"
                                     required
-                                    className="appearance-none relative block w-full pl-10 px-3 py-3 border border-slate-300 placeholder-slate-500 text-slate-900 rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="appearance-none relative block w-full pl-10 px-3 py-3 border border-slate-300 placeholder-slate-500 text-slate-900 rounded-lg focus:outline-none focus:ring-brand-primary focus:border-brand-primary focus:z-10 sm:text-sm"
                                     placeholder="Password"
                                     value={password}
                                     onChange={onChange}
@@ -126,7 +126,7 @@ const Register = () => {
                                     name="confirmPassword"
                                     type="password"
                                     required
-                                    className="appearance-none relative block w-full pl-10 px-3 py-3 border border-slate-300 placeholder-slate-500 text-slate-900 rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="appearance-none relative block w-full pl-10 px-3 py-3 border border-slate-300 placeholder-slate-500 text-slate-900 rounded-lg focus:outline-none focus:ring-brand-primary focus:border-brand-primary focus:z-10 sm:text-sm"
                                     placeholder="Confirm Password"
                                     value={confirmPassword}
                                     onChange={onChange}
@@ -138,7 +138,7 @@ const Register = () => {
                     <div>
                         <button
                             type="submit"
-                            className="group relative flex w-full justify-center rounded-lg border border-transparent bg-indigo-600 py-3 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 shadow-md hover:shadow-lg"
+                            className="group relative flex w-full justify-center rounded-lg border border-transparent bg-brand-primary py-3 px-4 text-sm font-medium text-white hover:bg-brand-accent focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 transition-all duration-200 shadow-md hover:shadow-lg"
                         >
                             Sign up
                         </button>
@@ -147,7 +147,7 @@ const Register = () => {
                 <div className="text-center">
                     <p className="text-sm text-slate-600">
                         Already have an account?{' '}
-                        <Link to="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
+                        <Link to="/login" className="font-medium text-brand-primary hover:text-brand-accent">
                             Sign in
                         </Link>
                     </p>
