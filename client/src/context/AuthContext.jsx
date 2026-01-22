@@ -19,13 +19,17 @@ const authReducer = (state, action) => {
                 loading: false,
                 user: action.payload,
             };
-        case 'REGISTER_SUCCESS':
         case 'LOGIN_SUCCESS':
             localStorage.setItem('token', action.payload.token);
             return {
                 ...state,
                 ...action.payload,
                 isAuthenticated: true,
+                loading: false,
+            };
+        case 'REGISTER_SUCCESS':
+            return {
+                ...state,
                 loading: false,
             };
         case 'REGISTER_FAIL':
@@ -83,7 +87,10 @@ export const AuthProvider = ({ children }) => {
                 payload: res.data,
             });
 
-            loadUser();
+            dispatch({
+                type: 'REGISTER_SUCCESS',
+                payload: res.data,
+            });
         } catch (err) {
             dispatch({
                 type: 'REGISTER_FAIL',

@@ -28,8 +28,9 @@ const Register = () => {
         }
         try {
             await register({ name, email, password });
-            toast.success('Registered successfully');
-            navigate('/dashboard');
+            await register({ name, email, password });
+            toast.success('Registered successfully. Please log in.');
+            navigate('/login');
         } catch (err) {
             // Error handled in context or here
             if (err.response && err.response.data.errors) {
