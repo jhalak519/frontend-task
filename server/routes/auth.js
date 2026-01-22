@@ -47,9 +47,7 @@ router.post(
 
             await user.save();
 
-            await user.save();
-
-            res.json({ msg: 'User registered successfully' });
+            res.json({ msg: 'User is created successfully!' });
         } catch (err) {
             console.error(err.message);
             res.status(500).send('Server error');
@@ -69,13 +67,13 @@ router.post('/login', async (req, res) => {
         let user = await User.findOne({ email });
 
         if (!user) {
-            return res.status(400).json({ msg: 'Invalid Credentials' });
+            return res.status(400).json({ msg: 'User does not exist or something went wrong' });
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (!isMatch) {
-            return res.status(400).json({ msg: 'Invalid Credentials' });
+            return res.status(400).json({ msg: 'User does not exist or something went wrong' });
         }
 
         const payload = {
