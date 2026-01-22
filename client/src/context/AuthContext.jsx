@@ -86,11 +86,6 @@ export const AuthProvider = ({ children }) => {
                 type: 'REGISTER_SUCCESS',
                 payload: res.data,
             });
-
-            dispatch({
-                type: 'REGISTER_SUCCESS',
-                payload: res.data,
-            });
         } catch (err) {
             dispatch({
                 type: 'REGISTER_FAIL',
