@@ -56,7 +56,16 @@ const connectDB = async () => {
 // The Mongoose buffering (if enabled) or specific route handling will manage the wait.
 // NOTE: We disabled buffering above to fail fast, so specific routes might need to ensure connection if this is slow.
 // However, for typical Vercel usage, the connection usually establishes quickly enough or on the first cold start.
-connectDB();
+// Middleware to ensure DB connection before handling requests
+app.use(async (req, res, next) => {
+    try {
+        await connectDB();
+        next();
+    } catch (err) {
+        console.error('Database connection failed in middleware:', err);
+        res.status(500).json({ error: 'Database connection failed' });
+    }
+});
 
 app.get('/', (req, res) => res.send('API is running'));
 
