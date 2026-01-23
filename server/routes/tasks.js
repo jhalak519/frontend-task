@@ -3,6 +3,8 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 const Task = require('../models/Task');
 
+const mongoose = require('mongoose');
+
 // @route   GET api/tasks
 // @desc    Get all users tasks with pagination and sorting
 // @access  Private
@@ -32,9 +34,32 @@ router.get('/', auth, async (req, res) => {
         const total = await Task.countDocuments({ user: req.user.id });
         const pages = Math.ceil(total / limit);
 
+        // Calculate stats
+        const stats = await Task.aggregate([
+            { $match: { user: new mongoose.Types.ObjectId(req.user.id) } }, // Cast to ObjectId for aggregation
+            {
+                $group: {
+                    _id: null,
+                    total: { $sum: 1 },
+                    pending: {
+                        $sum: { $cond: [{ $eq: ["$status", "pending"] }, 1, 0] }
+                    },
+                    inProgress: {
+                        $sum: { $cond: [{ $eq: ["$status", "in-progress"] }, 1, 0] }
+                    },
+                    completed: {
+                        $sum: { $cond: [{ $eq: ["$status", "completed"] }, 1, 0] }
+                    }
+                }
+            }
+        ]);
+
+        const taskStats = stats[0] || { total: 0, pending: 0, inProgress: 0, completed: 0 };
+
         res.json({
             tasks,
             total,
+            stats: taskStats,
             page,
             pages,
             limit

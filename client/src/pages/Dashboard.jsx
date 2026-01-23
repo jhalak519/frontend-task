@@ -72,12 +72,13 @@ const Dashboard = () => {
     // Bulk Selection State
     const [selectedTasks, setSelectedTasks] = useState(new Set());
 
-    const stats = useMemo(() => ({
-        total: total,
-        completed: tasks.filter(t => t.status === 'completed').length,
-        inProgress: tasks.filter(t => t.status === 'in-progress').length,
-        pending: tasks.filter(t => t.status === 'pending').length
-    }), [tasks, total]);
+    // Stats State
+    const [stats, setStats] = useState({
+        total: 0,
+        completed: 0,
+        inProgress: 0,
+        pending: 0
+    });
 
     // Form State
     const [isEditing, setIsEditing] = useState(false);
@@ -102,6 +103,7 @@ const Dashboard = () => {
                 params: { page, limit, sortBy, sortOrder }
             });
             setTasks(res.data.tasks);
+            setStats(res.data.stats || { total: 0, completed: 0, inProgress: 0, pending: 0 });
             setTotalPages(res.data.pages);
             setTotal(res.data.total);
             setLoading(false);
@@ -138,6 +140,7 @@ const Dashboard = () => {
             });
             toast.success('Task deleted');
             closeDeleteModal();
+            fetchTasks();
         } catch (err) {
             toast.error('Failed to delete task');
         } finally {
@@ -155,6 +158,7 @@ const Dashboard = () => {
             setTasks(tasks.filter(task => !selectedTasks.has(task._id)));
             setSelectedTasks(new Set());
             toast.success(`${selectedTasks.size} tasks deleted`);
+            fetchTasks();
         } catch (err) {
             toast.error('Failed to delete tasks');
         }
@@ -169,6 +173,7 @@ const Dashboard = () => {
             setTasks(tasks.map(t => updatedTasksMap.get(t._id) || t));
             setSelectedTasks(new Set());
             toast.success(`${res.data.tasks.length} tasks updated to ${status}`);
+            fetchTasks();
         } catch (err) {
             toast.error('Failed to update tasks');
         }
@@ -227,6 +232,7 @@ const Dashboard = () => {
                 toast.update(toastId, { render: "Task created successfully", type: "success", isLoading: false, autoClose: 3000 });
             }
             closeForm();
+            fetchTasks();
         } catch (err) {
             console.error('Task form error:', err);
             const errorMsg = err.response?.data?.msg || err.message || "Unknown error";
