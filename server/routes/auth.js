@@ -58,22 +58,19 @@ router.post(
 // @desc    Authenticate user & get token
 // @access  Public
 router.post('/login', async (req, res) => {
-    console.log("LOGIN ATTEMPT:");
-    console.log("Headers:", req.headers);
-    console.log("Body:", req.body);
     const { email, password } = req.body;
 
     try {
         let user = await User.findOne({ email });
 
         if (!user) {
-            return res.status(400).json({ msg: 'User does not exist or something went wrong' });
+            return res.status(400).json({ msg: 'User does not exist!' });
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (!isMatch) {
-            return res.status(400).json({ msg: 'User does not exist or something went wrong' });
+            return res.status(400).json({ msg: 'Invalid credentials!' });
         }
 
         const payload = {
@@ -85,7 +82,7 @@ router.post('/login', async (req, res) => {
         jwt.sign(
             payload,
             process.env.JWT_SECRET,
-            { expiresIn: '5d' },
+            { expiresIn: '1d' },
             (err, token) => {
                 if (err) throw err;
                 res.json({ token });

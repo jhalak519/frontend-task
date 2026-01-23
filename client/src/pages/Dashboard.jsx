@@ -13,7 +13,7 @@ const DeleteConfirmationModal = ({ isOpen, onClose, onConfirm, taskTitle, isLoad
             <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                 <div className="fixed inset-0 bg-brand-primary/20 backdrop-blur-sm transition-opacity" onClick={onClose}></div>
                 <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-                <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div className="z-10 relative inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                     <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                         <div className="sm:flex sm:items-start">
                             <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
@@ -396,7 +396,7 @@ const Dashboard = () => {
                     <div className="flex flex-wrap gap-2 w-full sm:w-auto justify-end">
                         {/* Sort Controls */}
                         <select
-                            className="pl-3 pr-8 py-2 text-sm border-slate-300 focus:ring-brand-primary focus:border-brand-primary rounded-lg"
+                            className="bg-white pl-3 pr-8 py-2 text-sm border-slate-300 focus:ring-brand-primary focus:border-brand-primary rounded-lg"
                             value={sortBy}
                             onChange={(e) => { setSortBy(e.target.value); setPage(1); }}
                         >
@@ -415,7 +415,7 @@ const Dashboard = () => {
                         </button>
 
                         <select
-                            className="pl-3 pr-8 py-2 text-sm border-slate-300 focus:ring-indigo-500 focus:border-indigo-500 rounded-lg"
+                            className="bg-white pl-3 pr-8 py-2 text-sm border-slate-300 focus:ring-indigo-500 focus:border-indigo-500 rounded-lg"
                             value={statusFilter}
                             onChange={(e) => setStatusFilter(e.target.value)}
                         >

@@ -5,12 +5,11 @@
 
   --color-brand-primary: #A8DF8E;
   --color-brand-bg: #F0FFDF;
-  --color-brand-soft: #FFD8DF;
-  --color-brand-accent: #FFAAB8;
+  --color-brand-soft: #DCFCE7;
+  --color-brand-accent: #86b372;
 }
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-brand-bg);
   @apply text-slate-900;
 }

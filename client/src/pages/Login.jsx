@@ -23,13 +23,15 @@ const Login = () => {
         try {
             await login({ email, password });
             toast.success('Logged in successfully');
-            console.log('Logged in successfully');
             navigate('/dashboard');
         } catch (err) {
-            const errorMsg = err.response?.data?.msg || err.message === 'Network Error'
-                ? 'Unable to connect to server. Is it running?'
-                : 'Login Failed';
-            toast.error(errorMsg);
+            if (err.response) {
+                toast.error(err.response.data.msg);
+            } else if (err.message === 'Network Error') {
+                toast.error('Unable to connect to server. Is it running?');
+            } else {
+                toast.error('Login failed');
+            }
         }
     };
 
